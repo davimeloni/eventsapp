@@ -1,0 +1,29 @@
+.eventDetails {
+	box-shadow: 0px 0px 5px grey;
+	padding-left: 20px;
+	padding-top: 3px;
+	margin-top: 20px;
+	margin-bottom: 60px;
+}
+
+.guestForm {
+	box-shadow: 0px 0px 5px grey;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 20px;
+	margin-bottom: 60px;
+}
+
+.guestTable {
+	width: 50%;
+}
+
+.formEvent {
+	box-shadow: 0px 0px 5px grey;
+	margin-top: 100px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}

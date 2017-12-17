@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Event</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a class="waves-effect waves-light btn" href="/events">
+							<i class="material-icons left">format_list_bulleted</i> Back to
+							Events
+					</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
+		
+		<div th:each="event : ${event}" class="eventDetails">
+			<h5>Event Details</h5>
+			<div class="row">
+				<p>
+					Name: <span th:text="${event.name}"></span>
+				</p>
+				<p>
+					Local: <span th:text="${event.local}"></span>
+				</p>
+				<p>
+					Date: <span th:text="${event.date}"></span>
+				</p>
+				<p>
+					Time: <span th:text="${event.time}"></span>
+				</p>
+			</div>
+		</div>
+
+		<th:block th:include="validationmessage"></th:block>
+		<form method="post" class="guestForm" >
+			Name: <input type="text" value="" name="guest_name" /> ID: <input
+				type="text" value="" name="guestID" />
+
+			<button type="submit" class="waves-effect waves-light btn">Add
+				Guest</button>
+		</form>
+
+
+		<table class="container guestTable">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>ID</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="guest : ${guests}">
+					<td><span th:text="${guest.guest_name}"></span></td>
+					<td><span th:text="${guest.guestID}"></span></td>
+					<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deleteGuest').arg(0, guest.guestID)).build()}">
+					<i class="material-icons left">delete</i>
+				</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+
+</html>
