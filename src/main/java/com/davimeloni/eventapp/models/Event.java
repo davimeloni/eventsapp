@@ -19,11 +19,11 @@ public class Event implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long code;
+	private long uid;
 	@NotEmpty
 	private String name;
 	@NotEmpty
-	private String local;
+	private String place;
 	@NotEmpty
 	private String date;
 	@NotEmpty
@@ -32,11 +32,11 @@ public class Event implements Serializable {
 	@OneToMany(mappedBy="event", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Guest> guest;
 	
-	public long getCode() {
-		return code;
+	public long getUid() {
+		return uid;
 	}
-	public void setCode(long code) {
-		this.code = code;
+	public void setUid(long uid) {
+		this.uid = uid;
 	}
 	public String getName() {
 		return name;
@@ -44,11 +44,11 @@ public class Event implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getLocal() {
-		return local;
+	public String getPlace() {
+		return place;
 	}
-	public void setLocal(String local) {
-		this.local = local;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 	public String getDate() {
 		return date;

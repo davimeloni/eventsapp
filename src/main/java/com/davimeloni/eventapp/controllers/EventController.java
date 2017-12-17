@@ -50,9 +50,9 @@ public class EventController {
 	}
 	
 	@RequestMapping("/deleteevent")
-	public String deleteEvent(long code) {
+	public String deleteEvent(long uid) {
 		
-		Event event = er.findByCode(code);
+		Event event = er.findByUid(uid);
 		er.delete(event);
 		
 		return "redirect:/events";
@@ -69,9 +69,9 @@ public class EventController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/{code}", method=RequestMethod.GET)
-	public ModelAndView eventDetails(@PathVariable("code") long code) {
-		Event event = er.findByCode(code);
+	@RequestMapping(value="/{uid}", method=RequestMethod.GET)
+	public ModelAndView eventDetails(@PathVariable("uid") long uid) {
+		Event event = er.findByUid(uid);
 		ModelAndView mv = new ModelAndView("event/eventdetails");
 		
 		mv.addObject("event", event);
@@ -84,22 +84,22 @@ public class EventController {
 		
 	}
 	
-	@RequestMapping(value="/{code}", method=RequestMethod.POST)
-	public String addGuest(@PathVariable("code") long code, @Valid Guest guest, BindingResult result, RedirectAttributes attributes) {
+	@RequestMapping(value="/{uid}", method=RequestMethod.POST)
+	public String addGuest(@PathVariable("uid") long uid, @Valid Guest guest, BindingResult result, RedirectAttributes attributes) {
 		
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("message", "Please verify the fields");
-			return "redirect:/{code}";
+			return "redirect:/{uid}";
 		} 
 		
-		Event event = er.findByCode(code);
+		Event event = er.findByUid(uid);
 		guest.setEvent(event);
 	
 		gr.save(guest);
 		
 		attributes.addFlashAttribute("message", "Guest added successfully");
 		
-		return "redirect:/{code}";
+		return "redirect:/{uid}";
 		
 	}
 	
@@ -110,11 +110,11 @@ public class EventController {
 		gr.delete(guest);
 		
 		Event event = guest.getEvent();
-		long eventCode = event.getCode();
+		long eventUid = event.getUid();
 		
-		String codeString = "" + eventCode;
+		String uidString = "" + eventUid;
 		
-		return "redirect:/" + codeString;
+		return "redirect:/" + uidString;
 		
 	}
 	

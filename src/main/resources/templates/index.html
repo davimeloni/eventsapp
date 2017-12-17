@@ -33,7 +33,7 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Local</th>
+				<th>Place</th>
 				<th>Date</th>
 				<th>Time</th>
 				<th>Delete</th>
@@ -42,11 +42,11 @@
 		
 		<tbody>
 			<tr th:each="event : ${events}">
-				<td><a th:href="${(#mvc.url('EC#eventDetails').arg(0, event.code)).build()}"><span th:text="${event.name}"></span></a></td>
-				<td><span th:text="${event.local}"></span></td>
+				<td><a th:href="${(#mvc.url('EC#eventDetails').arg(0, event.uid)).build()}"><span th:text="${event.name}"></span></a></td>
+				<td><span th:text="${event.place}"></span></td>
 				<td><span th:text="${event.date}"></span></td>
 				<td><span th:text="${event.time}"></span></td>
-				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deleteEvent').arg(0, event.code)).build()}">
+				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deleteEvent').arg(0, event.uid)).build()}">
 					<i class="material-icons left">delete</i>
 				</a></td>
 			</tr>
