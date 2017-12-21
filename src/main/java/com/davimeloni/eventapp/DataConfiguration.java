@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Configuration
 public class DataConfiguration {
 	
+	/*
 	@Bean
     public BasicDataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
@@ -31,8 +32,9 @@ public class DataConfiguration {
 
         return basicDataSource;
     }
+    */
 	
-	/* MySQL
+	
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -56,7 +58,7 @@ public class DataConfiguration {
 		
 		return adapter;
 	}
-	*/
+	
 
 }
 

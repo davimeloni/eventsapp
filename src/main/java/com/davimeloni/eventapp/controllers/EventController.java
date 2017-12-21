@@ -24,11 +24,6 @@ public class EventController {
 	
 	@Autowired
 	private GuestRepository gr;
-	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String index() {
-		return "redirect:/events";
-	}
 
 	@RequestMapping(value="/registerEvent", method=RequestMethod.GET)
 	public String form() {
@@ -61,7 +56,7 @@ public class EventController {
 	@RequestMapping("/events")
 	public ModelAndView EventList() {
 		
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("event/events");
 		Iterable<Event> events = er.findAll();
 		
 		mv.addObject("events", events);

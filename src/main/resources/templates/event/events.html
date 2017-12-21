@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"
+	media="screen,projection" />
+	
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+	<header>
+		<nav>
+    		<div class="nav-wrapper">
+      			<a href="#" class="brand-logo">Event List</a>
+      			<ul id="nav-mobile" class="right hide-on-med-and-down">
+        			<li><a class="waves-effect waves-light btn" href="/registerEvent">
+						<i class="material-icons left">add_circle_outline</i>
+						Register Event
+					</a></li>
+					<li><a href="logout"><strong>Log out</strong></a></li>
+     			 </ul>
+    		</div>
+  		</nav>
+	</header>
+
+	<table class="container">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Place</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="event : ${events}">
+				<td><a th:href="${(#mvc.url('EC#eventDetails').arg(0, event.uid)).build()}"><span th:text="${event.name}"></span></a></td>
+				<td><span th:text="${event.place}"></span></td>
+				<td><span th:text="${event.date}"></span></td>
+				<td><span th:text="${event.time}"></span></td>
+				<td>
+					<a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deleteEvent').arg(0, event.uid)).build()}">
+						<i class="material-icons left">delete</i>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+
+</html>

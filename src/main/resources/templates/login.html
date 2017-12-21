@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<link rel="stylesheet" type="text/css" href="style/style.css" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Events System Manger Login</title>
+</head>
+<body>
+	<header>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Login Page</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
+
+		<div th:if="${param.error}">Invalid username and password.</div>
+		<div th:if="${param.logout}">You have been logged out.</div>
+		<form th:action="@{/login}" method="post">
+			<div>
+				<label> Username: <input type="text" name="username" />
+				</label>
+			</div>
+			<div>
+				<label> Password: <input type="password" name="password" />
+				</label>
+			</div>
+			<div>
+				<button type="submit" class="waves-effect waves-light btn"
+					value="Sign In">
+					Log In <i class="material-icons left">subdirectory_arrow_right</i>
+				</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
