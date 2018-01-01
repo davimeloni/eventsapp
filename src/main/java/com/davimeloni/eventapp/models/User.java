@@ -26,13 +26,10 @@ public class User implements UserDetails {
 	private long uid;
 	
 	@NotNull
-    @NotEmpty
 	private String email;
 	@NotNull
-    @NotEmpty
 	private String username;
 	@NotNull
-    @NotEmpty
 	private String password;
 	private String matchingPassword;
 	
