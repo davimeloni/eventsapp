@@ -16,7 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Entity(name = "user")
+@Entity(name = "users")
 public class User implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
