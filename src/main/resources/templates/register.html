@@ -23,11 +23,6 @@
 			<div class="nav-wrapper">
 				<a href="/" class="brand-logo">Home</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a class="waves-effect waves-light btn" href="/events">
-							<i class="material-icons left">format_list_bulleted</i> Back to
-							Events
-					</a></li>
-					<li><a href="logout"><strong>Log out</strong></a></li>
 				</ul>
 			</div>
 		</nav>
@@ -35,28 +30,29 @@
 
 	<th:block th:include="validationmessage"></th:block>
 
-
-	<div class="container formEvent">
-		<form method="post">
-			<h5>Form Event</h5>
-			Name: <input type="text" value="" name="name" />
-			<div class="row">
-				<div class="input-field col s6">
-					Place: <input type="text" value="" name="place" />
-				</div>
-				<div class="input-field col s3">
-					Date: <input type="date" value="" name="date" />
-				</div>
-
-				<div class="input-field col s3">
-					Time: <input type="time" value="" name="time" />
-				</div>
+	<div class="container">
+	
+		<h1>Registration</h1>
+		
+		<form th:object="${user}" method="POST" enctype="utf8">
+			<div>
+				<label>username</label> 
+				<input th:field="*{username}" />
 			</div>
-
-			<button class="waves-effect waves-light btn" type="submit">Save</button>
-		</form>
+			<div>
+				<label>email</label>
+				 <input type="email" th:field="*{email}" />
+			</div>
+			<div>
+				<label>password</label> 
+				<input type="password" th:field="*{password}" />
+			</div>
+			
+			<button class="waves-effect waves-light btn" type="submit" >submit</button>
+		</form>	
+	
 	</div>
-
+	
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

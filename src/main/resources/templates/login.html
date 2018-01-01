@@ -21,14 +21,22 @@
 	<header>
 		<nav>
 			<div class="nav-wrapper">
-				<a href="#" class="brand-logo">Login Page</a>
+				<a href="/" class="brand-logo">Home</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li th:if="${user == null}" >
+        				<a class="waves-effect waves-light btn" href="/register">
+							<i class="material-icons left">subdirectory_arrow_right</i>
+							Register
+						</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
 	</header>
 
 	<div class="container">
+	
+		<h1>Login</h1>
 
 		<div th:if="${param.error}">Invalid username and password.</div>
 		<div th:if="${param.logout}">You have been logged out.</div>

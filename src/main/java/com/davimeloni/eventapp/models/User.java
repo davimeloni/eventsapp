@@ -1,10 +1,18 @@
 package com.davimeloni.eventapp.models;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,11 +22,26 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long uid;
 	
+	@NotNull
+    @NotEmpty
 	private String email;
+	@NotNull
+    @NotEmpty
 	private String username;
+	@NotNull
+    @NotEmpty
 	private String password;
+	private String matchingPassword;
+	
+	@ManyToMany
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(
+			name = "user_id", referencedColumnName = "uid"),
+			inverseJoinColumns = @JoinColumn(
+			name = "role_id", referencedColumnName = "userRole"))
+	private List<Role> roles;
 	
 	public long getUid() {
 		return uid;
@@ -47,7 +70,7 @@ public class User implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.roles;
 	}
 
 	@Override
@@ -86,7 +109,22 @@ public class User implements UserDetails {
 		return true;
 	}
 
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	
+	public String getMatchingPassword() {
+		return matchingPassword;
+	}
+
+	public void setMatchingPassword(String matchingPassword) {
+		this.matchingPassword = matchingPassword;
+	}
+
 	
 
 }

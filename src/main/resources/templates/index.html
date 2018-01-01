@@ -29,6 +29,12 @@
 							Log in
 						</a>
 					</li>
+					<li th:if="${user == null}" >
+        				<a class="waves-effect waves-light btn" href="/register">
+							<i class="material-icons left">subdirectory_arrow_right</i>
+							Register
+						</a>
+					</li>
      			 </ul>
     		</div>
   		</nav>
@@ -50,13 +56,13 @@
 			</a>
 		</div>
 	</div>
-	
 
 
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	
 </body>
 
 </html>

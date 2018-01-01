@@ -5,9 +5,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" />
 <!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"
-	media="screen,projection" />
-	
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
 <link rel="stylesheet" type="text/css" href="style/style.css" />
 
 <!--Let browser know website is optimized for mobile-->
@@ -17,17 +17,17 @@
 <body>
 	<header>
 		<nav>
-    		<div class="nav-wrapper">
-      			<a href="#" class="brand-logo">Event List</a>
-      			<ul id="nav-mobile" class="right hide-on-med-and-down">
-        			<li><a class="waves-effect waves-light btn" href="/registerEvent">
-						<i class="material-icons left">add_circle_outline</i>
-						Register Event
+			<div class="nav-wrapper">
+				<a href="/" class="brand-logo">Home</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a class="waves-effect waves-light btn"
+						href="/registerEvent"> <i class="material-icons left">add_circle_outline</i>
+							Register Event
 					</a></li>
 					<li><a href="logout"><strong>Log out</strong></a></li>
-     			 </ul>
-    		</div>
-  		</nav>
+				</ul>
+			</div>
+		</nav>
 	</header>
 
 	<table class="container">
@@ -40,27 +40,57 @@
 				<th>Delete</th>
 			</tr>
 		</thead>
-		
+
 		<tbody>
 			<tr th:each="event : ${events}">
-				<td><a th:href="${(#mvc.url('EC#eventDetails').arg(0, event.uid)).build()}"><span th:text="${event.name}"></span></a></td>
+				<td><a
+					th:href="${(#mvc.url('EC#eventDetails').arg(0, event.uid)).build()}"><span
+						th:text="${event.name}"></span></a></td>
 				<td><span th:text="${event.place}"></span></td>
 				<td><span th:text="${event.date}"></span></td>
 				<td><span th:text="${event.time}"></span></td>
 				<td>
-					<a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deleteEvent').arg(0, event.uid)).build()}">
+					<a class="waves-effect waves-light btn-small"
+						th:href="${(#mvc.url('EC#deleteEvent').arg(0, event.uid)).build()}">
 						<i class="material-icons left">delete</i>
-					</a>
+					</a> 	
 				</td>
 			</tr>
 		</tbody>
 	</table>
 
 
+	<!-- Delete Modal Structure 
+	<div id="deleteModal" class="modal">
+		<div class="modal-content">
+			<h4>Delete</h4>
+			<p>Are you sure?</p>
+		</div>
+		<div class="modal-footer">
+		<a href="#!"
+				class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+				
+			<a href="#!"
+				class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+		</div>
+	</div>
+
+	<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+	-->
+
+
+
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+	    	// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+	  	});
+	</script>
 </body>
 
 </html>
