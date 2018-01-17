@@ -23,16 +23,24 @@
 			<div class="nav-wrapper">
 				<a href="/" class="brand-logo">Home</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li th:if="${user.username == null}" >
+        				<a class="waves-effect waves-light btn" href="/login">
+							<i class="material-icons left">subdirectory_arrow_right</i>
+							Login
+						</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
 	</header>
 
-	<th:block th:include="validationmessage"></th:block>
+	
 
 	<div class="container">
-	
+		
 		<h1>Registration</h1>
+		
+		<th:block th:include="validationmessage"></th:block>
 		
 		<form th:object="${user}" method="POST" enctype="utf8">
 			<div>

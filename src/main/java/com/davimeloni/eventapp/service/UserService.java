@@ -22,7 +22,11 @@ public class UserService {
 	@Autowired
 	private RoleRepository rr;
 
-	public void saveUser(User user) {
+	public String saveUser(User user) {
+		
+		if (ur.findByUsername(user.getUsername()) != null) {
+			return "username or email already exists";
+		}
 
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
@@ -34,6 +38,8 @@ public class UserService {
 		user.setRoles(roles);
 
 		ur.save(user);
+		
+		return "User registered sucessfully";
 		
 	}
 

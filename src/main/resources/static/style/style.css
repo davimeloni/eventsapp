@@ -29,5 +29,10 @@
 }
 
 .nav-wrapper {
-	margin-left: 10px;
+	padding-left: 10px;
+	background: #191970;
+}
+
+.alert {
+	font-weight: bolder;
 }

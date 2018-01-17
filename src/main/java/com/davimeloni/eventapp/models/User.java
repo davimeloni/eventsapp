@@ -3,6 +3,8 @@ package com.davimeloni.eventapp.models;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,15 +27,21 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long uid;
 	
+	@Column(unique=true)
 	@NotNull
+	@NotEmpty
 	private String email;
+	
+	@Column(unique=true)
 	@NotNull
+	@NotEmpty
 	private String username;
 	@NotNull
+	@NotEmpty
 	private String password;
 	private String matchingPassword;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(
 			name = "user_id", referencedColumnName = "uid"),
 			inverseJoinColumns = @JoinColumn(

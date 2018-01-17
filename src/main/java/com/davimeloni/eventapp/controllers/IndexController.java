@@ -62,7 +62,7 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView showRegister(@ModelAttribute("user") User user) {
 		
 		ModelAndView mav = new ModelAndView("register");
 		mav.addObject("user", new User());
@@ -70,6 +70,7 @@ public class IndexController {
 		return mav;
 	}
 
+	/*
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerUser (HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("user") User user) {
@@ -80,6 +81,23 @@ public class IndexController {
 		userService.saveUser(user);
 		
 		return "redirect:/login";
+	}
+	*/
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registerUser (@Valid User user, BindingResult result, RedirectAttributes attributes, Model model) {
+		
+		String message = "";
+		
+		if (result.hasErrors()) {
+			attributes.addFlashAttribute("message", "Please fill the empty fields");
+			return "redirect:/register";
+		} 
+		
+		message = userService.saveUser(user);
+		attributes.addFlashAttribute("message", message);
+		
+		return "redirect:/register";
 	}
 
 }
